@@ -1,7 +1,12 @@
 (ns myapp.main
   (:require ["react-native" :as rn]
             [applied-science.js-interop :as j]
+            [helix.core :refer [defnc $]]
+            [helix.dom :as d]
             [hx.react :as hx]))
+
+(defnc GreetingView []
+  ($ rn/Text "Hello World"))
 
 (defonce *root-wrapper (atom nil))
 
@@ -16,7 +21,7 @@
     [rn/View {:style {:flex 1
                       :align-items "center"
                       :justify-content "center"}}
-     [rn/Text "Hello World"]]))
+     [GreetingView]]))
 
 (defn start {:dev/after-load true} []
   (if-let [rw @*root-wrapper]
